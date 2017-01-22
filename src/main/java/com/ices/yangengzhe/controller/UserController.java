@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ices.yangengzhe.pojo.User;
+import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.IUserService;
 
 @Controller

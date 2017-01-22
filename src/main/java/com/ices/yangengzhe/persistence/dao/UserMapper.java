@@ -1,6 +1,6 @@
-package com.ices.yangengzhe.dao;
+package com.ices.yangengzhe.persistence.dao;
 
-import com.ices.yangengzhe.pojo.User;
+import com.ices.yangengzhe.persistence.pojo.User;
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);

@@ -1,4 +1,4 @@
-package com.ices.yangengzhe.pojo;
+package com.ices.yangengzhe.persistence.pojo;
 
 public class User {
     private Integer id;
