@@ -5,10 +5,19 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="fid" property="fid" jdbcType="INTEGER" />
     <result column="uid" property="uid" jdbcType="INTEGER" />
+    
+    <association property="user" column="uid" select="com.ices.yangengzhe.persistence.dao.UserMapper.selectByUID" javaType="com.ices.yangengzhe.persistence.pojo.User"/>  
   </resultMap>
+  
   <sql id="Base_Column_List" >
     id, fid, uid
   </sql>
+  <select id="selectUsersByFID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from friendgroup_detail
+    where fid = #{fid,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -94,8 +94,8 @@
 
       //初始化接口
       init: {
-          //url: '/layim/api?action=base'
-       	  url: './json/getList.json'
+          url: '/webchat/api/init'
+       	  //url: './json/getList.json'
           , data: {id: im.getUid()}
       }
 
