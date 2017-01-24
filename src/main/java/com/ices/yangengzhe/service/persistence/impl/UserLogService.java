@@ -1,4 +1,4 @@
-package com.ices.yangengzhe.service.impl;
+package com.ices.yangengzhe.service.persistence.impl;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ices.yangengzhe.persistence.dao.UserLogMapper;
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.persistence.pojo.UserLog;
-import com.ices.yangengzhe.service.IUserLogService;
+import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.util.enums.UserLogType;
 
 /**

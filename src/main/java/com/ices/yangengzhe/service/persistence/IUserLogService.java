@@ -1,4 +1,4 @@
-package com.ices.yangengzhe.service;
+package com.ices.yangengzhe.service.persistence;
 
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.util.enums.UserLogType;

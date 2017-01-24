@@ -1,4 +1,4 @@
-package com.ices.yangengzhe.service.impl;
+package com.ices.yangengzhe.service.persistence.impl;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.ices.yangengzhe.persistence.dao.UserMapper;
 import com.ices.yangengzhe.persistence.pojo.User;
-import com.ices.yangengzhe.service.IUserService;
+import com.ices.yangengzhe.service.persistence.IUserService;
 
 
 /**
