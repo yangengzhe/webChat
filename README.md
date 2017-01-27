@@ -13,44 +13,47 @@
 ## 更新
 
 2017.1.26
+
 1. 离线消息功能完成
 2. 实时上线、下线状态更新
 
 ---
 
 2017.1.24
+
 1. 完成WebSocket私聊功能
 2. 完成Restful的init接口（获取个人信息、好友列表）
 
 ---
 
 2017.1.22
+
 基本框架搭设
 
 ## 结构图
 
 ### com.ices.yangengzhe.service.api
 
-Information
-	init - 初始化方法 返回用户信息和好友列表
-	addUser - 添加用户
-	findUserByUid - 根据UID找用户
-	
-Friend
-	// 创建好友分组
-    int addFriendgroup(Integer uid, String groupname);
-    // 创建好友分组
-    int addFriendgroup(Integer uid, String groupname, List<User> members);
-    // 添加好友
-    void addFriend(Integer user1,Integer user1_group,Integer user2,Integer user2_group);
-    //向分组加成员
-    void addMemberToFG(Integer groupId,Integer uid);
-    // 获取分组列表
-    public List<Friendgroup> getFriendgroupList(Integer uid);
-    // 获取分组列表(含成员)
-    public List<HashMap<String, Object>> getFriendgroupDetaillist(Integer uid);
-    // 获取好友分组的成员
-    public List<HashMap<String, Object>> getFridengroupMember(Integer fid);
+	Information
+		init - 初始化方法 返回用户信息和好友列表
+		addUser - 添加用户
+		findUserByUid - 根据UID找用户
+		
+	Friend
+		// 创建好友分组
+	    int addFriendgroup(Integer uid, String groupname);
+	    // 创建好友分组
+	    int addFriendgroup(Integer uid, String groupname, List<User> members);
+	    // 添加好友
+	    void addFriend(Integer user1,Integer user1_group,Integer user2,Integer user2_group);
+	    //向分组加成员
+	    void addMemberToFG(Integer groupId,Integer uid);
+	    // 获取分组列表
+	    public List<Friendgroup> getFriendgroupList(Integer uid);
+	    // 获取分组列表(含成员)
+	    public List<HashMap<String, Object>> getFriendgroupDetaillist(Integer uid);
+	    // 获取好友分组的成员
+	    public List<HashMap<String, Object>> getFridengroupMember(Integer fid);
 
 ### com.ices.yangengzhe.socket
 
