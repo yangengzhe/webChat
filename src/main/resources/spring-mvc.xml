@@ -61,4 +61,19 @@
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
     </bean>
+    
+    <!-- BeanFactory -->
+    <bean
+    	id="userLogService"
+        class="com.ices.yangengzhe.service.persistence.impl.UserLogService">
+    </bean>
+    <bean
+    	id="userService"
+        class="com.ices.yangengzhe.service.persistence.impl.UserService">
+    </bean>
+    <bean
+    	id="messageService"
+        class="com.ices.yangengzhe.service.persistence.impl.MessageService">
+    </bean>
+    
 </beans>

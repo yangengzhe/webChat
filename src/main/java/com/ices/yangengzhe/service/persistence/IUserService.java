@@ -13,5 +13,5 @@ public interface IUserService {
     
     public User getUserByUID(int userUID);
     
-    public void insertUser(User user);
+    public String insertUser(Integer Uid,String name,String photo,String sign);
 }

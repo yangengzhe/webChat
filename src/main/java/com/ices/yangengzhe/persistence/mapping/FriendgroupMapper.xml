@@ -11,6 +11,12 @@
   <sql id="Base_Column_List" >
     id, name, uid, addtime, sort
   </sql>
+  <select id="selectByUID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from friendgroup
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -21,7 +27,7 @@
     delete from friendgroup
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" >
+  <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" useGeneratedKeys="true" keyProperty="id">
     insert into friendgroup (id, name, uid, 
       addtime, sort)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 

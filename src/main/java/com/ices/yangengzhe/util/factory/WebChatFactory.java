@@ -1,5 +1,8 @@
 package com.ices.yangengzhe.util.factory;
 
+import org.springframework.web.context.ContextLoader;
+
+import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.socket.manager.IUserManager;
 import com.ices.yangengzhe.socket.manager.UserManager;
 import com.ices.yangengzhe.util.serializer.FastJsonSerializer;
@@ -20,5 +23,9 @@ public class WebChatFactory {
     public static IUserManager createManager(){
         return UserManager.getInstance();
     }
-
+    
+    //Bean工厂
+    public static Object beanFactory(String bean){
+        return ContextLoader.getCurrentWebApplicationContext().getBean(bean);
+    }
 }

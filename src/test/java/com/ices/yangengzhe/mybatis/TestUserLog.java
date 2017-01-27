@@ -35,7 +35,7 @@ public class TestUserLog {    // private ApplicationContext ac = null;
             user.setPassword("123456");
             user.setSign("签名");
             user.setUid(10000);
-            userLogService.insertLog(user, "127.0.0.1", UserLogType.LOGIN);
+//            userLogService.insertLog(user, "127.0.0.1", UserLogType.LOGIN);
         } catch (Exception e) {
             e.printStackTrace();
         }

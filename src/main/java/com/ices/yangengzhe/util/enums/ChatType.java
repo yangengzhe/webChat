@@ -8,8 +8,9 @@ package com.ices.yangengzhe.util.enums;
  *
  */
 public enum ChatType {
-    GROUP("group"),
-    FRINED("friend");
+    FRINED("friend"),
+    GROUP("group");
+    
     
     String name;
     
@@ -18,6 +19,10 @@ public enum ChatType {
     }
     
     public String getName(){
-        return this.name();
+        return this.name;
+    }
+    
+    public int getOrdinal(){
+        return this.ordinal();
     }
 }

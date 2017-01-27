@@ -8,5 +8,5 @@ public interface IFriendgroupService {
 
     public List<Friendgroup> getFGByUID(int userUID);
 
-    public void insertFG(String name,int userUID);
+    public int insertFG(String name,int userUID);
 }

@@ -24,13 +24,14 @@ public class FriendgroupService implements IFriendgroupService {
     }
 
     @Override
-    public void insertFG(String name,int userUID) {
+    public int insertFG(String name,int userUID) {
         Friendgroup friendgroup = new Friendgroup();
         friendgroup.setAddtime(new Date());
         friendgroup.setName(name);
         friendgroup.setSort(99);
         friendgroup.setUid(userUID);
         friendgroupDao.insert(friendgroup);
+        return friendgroup.getId();
     }
 
 }

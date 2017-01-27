@@ -12,6 +12,41 @@
   <sql id="Base_Column_List" >
     id, uid, fromuser, gid, msg, addtime
   </sql>
+  <select id="selectByUIDTop" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg
+    where uid = #{uid,jdbcType=INTEGER}
+    order by id DESC
+    limit #{num,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFUIDTop" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg
+    where uid = #{uid,jdbcType=INTEGER} and fromuser = #{fromuser,jdbcType=INTEGER}
+    order by id DESC
+    limit #{num,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByGIDTop" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg
+    where gid = #{gid,jdbcType=INTEGER}
+    order by id DESC
+    limit #{num,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByFromIDTop" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from msg
+    where fromuser = #{fromuser,jdbcType=INTEGER}
+    order by id DESC
+    limit #{num,jdbcType=INTEGER}
+  </select>
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,15 +1,24 @@
 package com.ices.yangengzhe.persistence.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ices.yangengzhe.persistence.pojo.MsgUnread;
 
 public interface MsgUnreadMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(MsgUnread record);
-
+    //id 接收者（好友或群） gid 0代表好友 1代表群 fromuser表示发送者
+    
+    //删除
+    int deleteMsg(@Param("id")Integer id,@Param("gid")Integer gid,@Param("fromuser")Integer fromuser);
+    //自动插入
+    int countMsg(@Param("id")Integer id,@Param("gid")Integer gid,@Param("fromuser")Integer fromuser);
+    
+    //自己的好友： id = 自己UID 且 gid=0
+    //自己的群：  id = 自己群ID 且 gid=1
+    List<MsgUnread> selectByGidId(@Param("gid")Integer gid,@Param("id")Integer id);
+    
     int insertSelective(MsgUnread record);
-
-    MsgUnread selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(MsgUnread record);
 

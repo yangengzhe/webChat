@@ -5,7 +5,9 @@ import java.util.List;
 
 import com.ices.yangengzhe.persistence.pojo.Friendgroup;
 import com.ices.yangengzhe.persistence.pojo.FriendgroupDetail;
+import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.util.enums.ResponseType;
+import com.ices.yangengzhe.util.pojo.JsonResult;
 
 /**
  * @date 2017年1月23日 下午10:47:37
@@ -13,15 +15,12 @@ import com.ices.yangengzhe.util.enums.ResponseType;
  */
 public interface IInformation {
 
-    public boolean authentication(Integer uid);
+    public ResponseType getMyInformation(Integer uid,  String password,HashMap<String, Object> map);
 
-    public boolean isLogin(Integer uid);
-
-    public ResponseType getMyInformation(Integer uid, HashMap<String, Object> map);
-
-    public List<HashMap<String, Object>> getFriendgroupList(Integer uid);
-
-    public List<HashMap<String, Object>> getFridengroupMember(Integer fid);
-
-    public String init(Integer uid);
+    //初始化方法
+    public JsonResult init(Integer uid, String password);
+    
+    public void addUser(Integer uid,String name,String photo,String sign);
+    
+    public User findUserByUid(Integer uid);
 }

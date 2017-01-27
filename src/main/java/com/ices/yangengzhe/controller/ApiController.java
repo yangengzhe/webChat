@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.api.IInformation;
 import com.ices.yangengzhe.service.persistence.IUserService;
+import com.ices.yangengzhe.util.factory.WebChatFactory;
+import com.ices.yangengzhe.util.pojo.JsonResult;
+import com.ices.yangengzhe.util.serializer.IJsonSerializer;
 
 @Controller
 @RequestMapping("/api")
@@ -24,9 +27,16 @@ public class ApiController {
 
     @RequestMapping("/init")
     public void init(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setCharacterEncoding("UTF-8");
         
-        int userId = Integer.parseInt(request.getParameter("id"));
-        response.getWriter().write(information.init(userId));
+        String id  = request.getParameter("id");
+        String key  = request.getParameter("key");
+        JsonResult result = information.init(Integer.valueOf(id), key);
+        sendResult(response,result);
+    }
+    
+    public void sendResult(HttpServletResponse response,JsonResult result) throws IOException{
+        response.setCharacterEncoding("UTF-8");
+        IJsonSerializer serializer = WebChatFactory.createSerializer();
+        response.getWriter().write(serializer.toJSON(result));
     }
 }

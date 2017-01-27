@@ -1,10 +1,15 @@
 package com.ices.yangengzhe.socket.sender;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 import javax.websocket.Session;
 
+import org.apache.log4j.lf5.viewer.categoryexplorer.TreeModelAdapter;
+
+import com.ices.yangengzhe.service.persistence.IMessageService;
+import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.socket.manager.GroupUserManager;
 import com.ices.yangengzhe.util.enums.ChatType;
 import com.ices.yangengzhe.util.enums.ToClientMessageType;
@@ -23,6 +28,7 @@ import com.ices.yangengzhe.util.pojo.message.ToServerTextMessage;
  * 遍历过后需要优化在线与否，假如100人中只有一个人在线，则会浪费99次（未做优化）
  */
 public class MessageSender {
+    private IMessageService messageService = (IMessageService) WebChatFactory.beanFactory("messageService");
     //发送信息业务逻辑
     public void sendMessage(ToServerTextMessage message){
 
@@ -42,52 +48,89 @@ public class MessageSender {
             for (String userid : users) {
                 //遍历发送消息 自己过滤，不给自己发送(发送人id和群成员内的某个id相同)
                 if (!sendUserId.equals(userid)) {
-                    sendMessage(Integer.parseInt(userid), toClientMessage);
+                    sendMessage(Integer.parseInt(userid), toClientMessage,message);
                 }
             }
         }else {
-            sendMessage(toUserId, toClientMessage);
+            sendMessage(toUserId, toClientMessage,message);
         }
 
         //最后保存到数据库
         saveMessage(message);
 
     }
-
-    //给单个用户发
-    private  void sendMessage(Integer userId,String message){
+    
+  //给单个用户发
+    private  void sendMessage(Integer userId,String message,ToServerTextMessage toServerTextMessage){
         SocketUser user = WebChatFactory.createManager().getUser(userId);
         if (user.isExist()) {
             if (user.getSession() == null) {
 //                LayIMLog.info("该用户不在线 ");
+                saveOfflineMessage(toServerTextMessage);
             } else {
                 Session session = user.getSession();
                 if (session.isOpen()) {
                     //构造用户需要接收到的消息
-                    session.getAsyncRemote().sendText(message);
+                        session.getAsyncRemote().sendText(message);
                 }
             }
         }else{
 //            LayIMLog.info("该用户不在线 ");
+            saveOfflineMessage(toServerTextMessage);
+        }
+    }
+    
+  //同步给单个用户发（离线推送）
+    public  void sendMessage(Integer userId,String message){
+        SocketUser user = WebChatFactory.createManager().getUser(userId);
+        if (user.isExist()) {
+            if (user.getSession() == null) {
+            } else {
+                Session session = user.getSession();
+                if (session.isOpen()) {
+                        try {
+                            session.getBasicRemote().sendText(message);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                }
+            }
+        }else{
         }
     }
 
+    //发送离线消息
+    public void sendOfflineMessage(Integer userId){
+        //获取好友的离线消息
+        List<List<String>> msgList = messageService.getFriendUnreadMessage(userId);
+        for (List<String> list : msgList) {
+            for (String string : list) {
+                System.out.println("离线消息："+ string);
+                sendMessage(userId,string);
+            }
+        }
+        
+        //获取群组的离校消息
+        msgList = messageService.getGroupUnreadMessage(userId);
+        for (List<String> list : msgList) {
+            for (String string : list) {
+                sendMessage(userId,string);
+            }
+        }
+    }
+    
+    public void saveOfflineMessage(ToServerTextMessage message){
+        if(message==null)
+            return;
+        messageService.offlineMessage(message);
+    }
+    
     //保存到数据库
     //需要加入到队列
     private void saveMessage(ToServerTextMessage message){
-//        ToDBMessage dbMessage = new ToDBMessage();
-//
-//        dbMessage.setSendUserId(message.getMine().getId());
-//        dbMessage.setAddtime(new Date().getTime());
-//        dbMessage.setChatType( message.getTo().getType().equals(LayIMChatType.FRIEND) ? LayIMChatType.CHATFRIEND:LayIMChatType.CHATGROUP);
-//        dbMessage.setMsgType(1);//这个参数先不管就是普通聊天记录
-//        long groupId = getGroupId(message.getMine().getId(),message.getTo().getId(),message.getTo().getType());
-//        dbMessage.setGroupId(groupId);
-//        dbMessage.setMsg(message.getMine().getContent());
-//
-//        LayIMDao dao = new LayIMDao();
-//
-//        dao.addMsgRecord(dbMessage);
+        
+        messageService.insertMessage(message);
+        
     }
 
     //根据客户端发送来的消息，构造发送出去的消息

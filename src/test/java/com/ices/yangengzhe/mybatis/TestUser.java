@@ -34,15 +34,7 @@ public class TestUser {
 //     @Test
     public void testAdd() {
         try {
-            User user = new User();
-            user.setAddtime(new Date());
-            user.setHeadphoto("");
-            user.setName("李四");
-            user.setOnline(0);
-            user.setPassword("123456");
-            user.setSign("签名");
-            user.setUid(10002);
-            userService.insertUser(user);
+            userService.insertUser(10003,"王五","","签名3");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package com.ices.yangengzhe.socket.manager;
 
+import java.util.List;
+
 import com.ices.yangengzhe.util.pojo.SocketUser;
 
 /**
@@ -11,10 +13,14 @@ public interface IUserManager {
 
     boolean addUser(SocketUser user);
 
-    boolean removeUser(SocketUser user);
+    int removeUser(SocketUser user);
 
     int getOnlineCount();
 
     SocketUser getUser(int userId);
+    
+    List<SocketUser> getOnlineUser();
+    
+    void notifyOthers(SocketUser user,String message);
 
 }

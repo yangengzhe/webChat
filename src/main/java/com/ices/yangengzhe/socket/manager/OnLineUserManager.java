@@ -16,12 +16,12 @@ public class OnLineUserManager {
     static final String cacheName = "WEBCHAT";
     static final String cacheKey = "ONLINE_USER";
 
-    public void addUser(String userId){
+    public void addUser(String userId,String sessionId){
         Map map = ChatCache.getInstance().get(cacheName,cacheKey);
         if(map == null){
             map = new ConcurrentHashMap();
         }
-        map.put(userId,"online");
+        map.put(userId,sessionId);
         ChatCache.getInstance().set(cacheName,cacheKey,map);
     }
 

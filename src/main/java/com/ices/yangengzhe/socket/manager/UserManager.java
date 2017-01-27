@@ -1,9 +1,12 @@
 package com.ices.yangengzhe.socket.manager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.ehcache.impl.internal.concurrent.ConcurrentHashMap;
 
+import com.ices.yangengzhe.socket.sender.MessageSender;
 import com.ices.yangengzhe.util.pojo.SocketUser;
 
 
@@ -34,19 +37,20 @@ public class UserManager implements IUserManager {
 
     public boolean addUser(SocketUser user) {
 
-        String sessionUserId = Integer.toString(user.getUserId());
-        removeUser(sessionUserId);
-        socketUserMap.put(sessionUserId, user);
+        String sessionId = user.getSession().getId();
+        removeUser(sessionId);
+        socketUserMap.put(sessionId, user);
         //加入在线列表缓存
-        onLineUserManager.addUser(sessionUserId);
+        onLineUserManager.addUser(Integer.toString(user.getUserId()),sessionId);
         return true;
     }
 
 
-    public boolean removeUser(SocketUser user) {
-        String sessionUserId =  Integer.toString(user.getUserId());
-        onLineUserManager.removeUser(sessionUserId);
-        return removeUser(sessionUserId);
+    public int removeUser(SocketUser user) {
+        String sessionId =  user.getSession().getId();
+        int userid = removeUser(sessionId);
+        onLineUserManager.removeUser(Integer.toString(userid));
+        return userid;
     }
 
 
@@ -56,15 +60,42 @@ public class UserManager implements IUserManager {
 
     public SocketUser getUser(int userId){
         String key = Integer.toString(userId);
-        if(socketUserMap.containsKey(key)){
-            return socketUserMap.get(key);
+        Map map = onLineUserManager.getOnLineUsers();
+        if(map!=null && map.containsKey(key)){
+            return socketUserMap.get(map.get(key));
         }
         return new SocketUser();
     }
 
-    private boolean removeUser(String sessionUserId) {
-        socketUserMap.remove(sessionUserId);
-        return true;
+    private int removeUser(String sessionId) {
+        SocketUser user = socketUserMap.get(sessionId);
+        if(user!=null){
+            socketUserMap.remove(sessionId);
+            return user.getUserId();
+        }else
+            return 0;
+    }
+
+
+    @Override
+    public List<SocketUser> getOnlineUser() {
+        List<String> String = new ArrayList<String>(onLineUserManager.getOnLineUsers().values());
+        List<SocketUser> result = new ArrayList<SocketUser>();
+        for (String value : String) {
+            result.add(socketUserMap.get(value));
+        }
+        return result;
+    }
+
+
+    @Override
+    public void notifyOthers(SocketUser user, String message) {
+        List<SocketUser> users = getOnlineUser();
+        for (SocketUser socketUser : users) {
+            if(user.equals(socketUser))
+                continue;
+            socketUser.getSession().getAsyncRemote().sendText(message);
+        }
     }
 
 }
