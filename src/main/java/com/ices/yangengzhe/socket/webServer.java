@@ -1,8 +1,5 @@
 package com.ices.yangengzhe.socket;
 
-import java.util.List;
-
-import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -10,20 +7,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.web.context.ContextLoader;
-
 import com.ices.yangengzhe.service.persistence.IUserLogService;
-import com.ices.yangengzhe.service.persistence.impl.UserLogService;
 import com.ices.yangengzhe.socket.manager.OnLineUserManager;
 import com.ices.yangengzhe.socket.sender.MessageSender;
-import com.ices.yangengzhe.socket.sender.MessageWrapper;
+import com.ices.yangengzhe.socket.sender.MessageParse;
 import com.ices.yangengzhe.util.enums.OnlineStatus;
 import com.ices.yangengzhe.util.enums.UserLogType;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
@@ -53,7 +40,7 @@ public class webServer {
         print("当前在线用户：" + WebChatFactory.createManager().getOnlineCount());
         print("缓存中的用户个数：" + new OnLineUserManager().getOnLineUsers().size());
         //通知所有人
-        String message = MessageWrapper.ServiceOnlineStatus(uid, OnlineStatus.ONLINE);
+        String message = MessageParse.ServiceOnlineStatus(uid, OnlineStatus.ONLINE);
         WebChatFactory.createManager().notifyOthers(user, message);
     }
 
@@ -95,7 +82,7 @@ public class webServer {
         // print("当前在线用户：" + WebChatFactory.createManager().getOnlineCount());
         // print("缓存中的用户个数：" + new OnLineUserManager().getOnLineUsers().size());
       //通知所有人
-        String message = MessageWrapper.ServiceOnlineStatus(uid, OnlineStatus.OFFLINE);
+        String message = MessageParse.ServiceOnlineStatus(uid, OnlineStatus.OFFLINE);
         WebChatFactory.createManager().notifyOthers(user, message);
     }
 

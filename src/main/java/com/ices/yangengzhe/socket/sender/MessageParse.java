@@ -12,7 +12,7 @@ import com.ices.yangengzhe.util.pojo.message.ToClientMessageResult;
  * @author yangengzhe
  *
  */
-public class MessageWrapper {
+public class MessageParse {
     public static String ServiceOnlineStatus(Integer uid , OnlineStatus status){
       //返回统一消息接口
         ToClientMessageResult result = new ToClientMessageResult();

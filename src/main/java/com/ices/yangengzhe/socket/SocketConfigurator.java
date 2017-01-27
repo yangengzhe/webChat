@@ -5,6 +5,11 @@ import javax.websocket.HandshakeResponse;
 import javax.websocket.server.HandshakeRequest;
 import javax.websocket.server.ServerEndpointConfig;
 import javax.websocket.server.ServerEndpointConfig.Configurator;
+/**
+ * @date 2017年1月27日 上午8:37:38
+ * @author yangengzhe
+ *
+ */
 public class SocketConfigurator extends Configurator {
     @Override
     public void modifyHandshake(ServerEndpointConfig config, HandshakeRequest request, HandshakeResponse response) {
