@@ -3,21 +3,11 @@ package com.ices.yangengzhe.persistence.pojo;
 import java.util.Date;
 
 public class GroupDetail {
-    private Integer id;
-
     private Integer gid;
 
     private Integer uid;
 
     private Date addtime;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getGid() {
         return gid;

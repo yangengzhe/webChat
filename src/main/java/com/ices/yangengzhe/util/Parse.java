@@ -4,11 +4,8 @@ package com.ices.yangengzhe.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.ices.yangengzhe.persistence.pojo.Msg;
 import com.ices.yangengzhe.persistence.pojo.User;
-import com.ices.yangengzhe.service.persistence.IUserService;
 import com.ices.yangengzhe.util.enums.ChatType;
 import com.ices.yangengzhe.util.enums.ToClientMessageType;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
@@ -50,4 +47,5 @@ public class Parse {
             resultlist.add(getStringToClientMessage(sender, message.get(i)));
         return resultlist;
     }
+    
 }

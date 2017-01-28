@@ -134,8 +134,8 @@ html {
 								//查看群员接口
 								,
 								members : {
-									//url: '/layim/api?action=member'
-									url : './json/getMembers.json',
+									url: '/webchat/api/member',
+									//url : './json/getMembers.json',
 									data : {}
 								}
 
@@ -157,7 +157,7 @@ html {
 								chatLog : './demo/chatlog.html' //聊天记录地址
 								,
 								find : './demo/find.html'
-							//,copyright: true //是否授权
+							,copyright: true //是否授权
 							});
 
 							/*

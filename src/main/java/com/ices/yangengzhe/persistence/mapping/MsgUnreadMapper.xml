@@ -17,19 +17,20 @@
 		select
 		<include refid="Base_Column_List" />
 		from msg_unread
-		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteMsg">
 		delete from
 		msg_unread
-		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER} and fromuser = #{fromuser,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER} and fromuser = #{fromuser,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
 	</delete>
 	<insert id="countMsg">
 		{
 		call msgcounts(
 		#{id,jdbcType=INTEGER,mode=IN},
 		#{gid,jdbcType=INTEGER,mode=IN},
-		#{fromuser,jdbcType=INTEGER,mode=IN}
+		#{fromuser,jdbcType=INTEGER,mode=IN},
+		#{uid,jdbcType=INTEGER,mode=IN}
 		)
 		}
 

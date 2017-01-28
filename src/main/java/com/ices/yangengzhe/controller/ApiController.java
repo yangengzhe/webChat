@@ -2,18 +2,15 @@ package com.ices.yangengzhe.controller;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ices.yangengzhe.persistence.pojo.User;
+import com.ices.yangengzhe.service.api.IGroup;
 import com.ices.yangengzhe.service.api.IInformation;
-import com.ices.yangengzhe.service.persistence.IUserService;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
 import com.ices.yangengzhe.util.pojo.JsonResult;
 import com.ices.yangengzhe.util.serializer.IJsonSerializer;
@@ -24,6 +21,8 @@ public class ApiController {
 
     @Autowired
     private IInformation information;
+    @Autowired
+    private IGroup group;
 
     @RequestMapping("/init")
     public void init(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -31,6 +30,14 @@ public class ApiController {
         String id  = request.getParameter("id");
         String key  = request.getParameter("key");
         JsonResult result = information.init(Integer.valueOf(id), key);
+        sendResult(response,result);
+    }
+    
+    @RequestMapping("/member")
+    public void getGroupMember(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+        String id  = request.getParameter("id");
+        JsonResult result = group.getGroupMembers(Integer.valueOf(id));
         sendResult(response,result);
     }
     

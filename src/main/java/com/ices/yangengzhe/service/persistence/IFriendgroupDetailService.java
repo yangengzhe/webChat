@@ -2,7 +2,6 @@ package com.ices.yangengzhe.service.persistence;
 
 import java.util.List;
 
-import com.ices.yangengzhe.persistence.pojo.Friendgroup;
 import com.ices.yangengzhe.persistence.pojo.FriendgroupDetail;
 
 public interface IFriendgroupDetailService {

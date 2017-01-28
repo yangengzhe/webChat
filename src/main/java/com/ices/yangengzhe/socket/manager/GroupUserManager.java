@@ -2,7 +2,9 @@ package com.ices.yangengzhe.socket.manager;
 
 import java.util.List;
 
+import com.ices.yangengzhe.service.persistence.IGroupService;
 import com.ices.yangengzhe.util.cache.ChatCache;
+import com.ices.yangengzhe.util.factory.WebChatFactory;
 
 /**
  * 群组成员管理
@@ -33,12 +35,11 @@ public class GroupUserManager {
         List<String> list = ChatCache.getInstance().getListCache(cacheName,key);
         if (list == null || list.size()==0) {
             System.out.println("缓存中没有数据，需要从数据库读取");
-            
             //从数据库中读取群成员
-//            LayIMDao dao = new LayIMDao();
-//            List<String> memebers = dao.getMemberListOnlyIds(groupId);
-//            saveGroupMemeberIds(groupId, memebers);
-//            return memebers;
+            IGroupService groupService = (IGroupService) WebChatFactory.beanFactory("groupService");
+            List<String> memebers = groupService.getAllMemberToString(groupId);
+            saveGroupMemeberIds(groupId, memebers);
+            return memebers;
         }else{
             System.out.println("直接从缓存中读取出来");
         }

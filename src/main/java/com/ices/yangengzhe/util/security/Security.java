@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
 import com.ices.yangengzhe.util.pojo.SocketUser;
 

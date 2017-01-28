@@ -1,32 +1,19 @@
 package com.ices.yangengzhe.service.api.impl;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import javax.annotation.Resource;
-import javax.enterprise.inject.New;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ices.yangengzhe.persistence.pojo.Friendgroup;
-import com.ices.yangengzhe.persistence.pojo.FriendgroupDetail;
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.api.IFriend;
+import com.ices.yangengzhe.service.api.IGroup;
 import com.ices.yangengzhe.service.api.IInformation;
-import com.ices.yangengzhe.service.persistence.IFriendgroupDetailService;
-import com.ices.yangengzhe.service.persistence.IFriendgroupService;
 import com.ices.yangengzhe.service.persistence.IUserService;
 import com.ices.yangengzhe.util.enums.ResponseType;
-import com.ices.yangengzhe.util.factory.WebChatFactory;
 import com.ices.yangengzhe.util.pojo.JsonResult;
-import com.ices.yangengzhe.util.pojo.SocketUser;
 import com.ices.yangengzhe.util.security.Security;
-import com.ices.yangengzhe.util.serializer.IJsonSerializer;
 
 /**
  * @date 2017年1月24日 上午10:16:49
@@ -40,6 +27,8 @@ public class Information implements IInformation {
     private IUserService userService;
     @Autowired
     private IFriend  friend;
+    @Autowired
+    private IGroup group;
 
     @Override
     public ResponseType getMyInformation(Integer uid, String password,HashMap<String, Object> map) {
@@ -63,7 +52,8 @@ public class Information implements IInformation {
         map.put("friend",friendgrouplist);
         
         //群
-        map.put("group", "");
+        List<HashMap<String, Object>> grouplist = group.getAllGroup(uid);
+        map.put("group", grouplist);
         return ResponseType.SUCCESS;
     }
 
@@ -75,7 +65,6 @@ public class Information implements IInformation {
         ResponseType responseType = getMyInformation(uid,password,data);
         return new JsonResult(responseType,data);
     }
-
 
 
     @Override

@@ -6,10 +6,7 @@ import java.util.List;
 
 import javax.websocket.Session;
 
-import org.apache.log4j.lf5.viewer.categoryexplorer.TreeModelAdapter;
-
 import com.ices.yangengzhe.service.persistence.IMessageService;
-import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.socket.manager.GroupUserManager;
 import com.ices.yangengzhe.util.enums.ChatType;
 import com.ices.yangengzhe.util.enums.ToClientMessageType;
@@ -66,7 +63,7 @@ public class MessageSender {
         if (user.isExist()) {
             if (user.getSession() == null) {
 //                LayIMLog.info("该用户不在线 ");
-                saveOfflineMessage(toServerTextMessage);
+                saveOfflineMessage(userId,toServerTextMessage);
             } else {
                 Session session = user.getSession();
                 if (session.isOpen()) {
@@ -76,7 +73,7 @@ public class MessageSender {
             }
         }else{
 //            LayIMLog.info("该用户不在线 ");
-            saveOfflineMessage(toServerTextMessage);
+            saveOfflineMessage(userId,toServerTextMessage);
         }
     }
     
@@ -105,11 +102,9 @@ public class MessageSender {
         List<List<String>> msgList = messageService.getFriendUnreadMessage(userId);
         for (List<String> list : msgList) {
             for (String string : list) {
-                System.out.println("离线消息："+ string);
                 sendMessage(userId,string);
             }
         }
-        
         //获取群组的离校消息
         msgList = messageService.getGroupUnreadMessage(userId);
         for (List<String> list : msgList) {
@@ -119,10 +114,10 @@ public class MessageSender {
         }
     }
     
-    public void saveOfflineMessage(ToServerTextMessage message){
+    public void saveOfflineMessage(Integer recevUid,ToServerTextMessage message){
         if(message==null)
             return;
-        messageService.offlineMessage(message);
+        messageService.offlineMessage(recevUid,message);
     }
     
     //保存到数据库

@@ -1,17 +1,18 @@
 package com.ices.yangengzhe.persistence.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ices.yangengzhe.persistence.pojo.GroupDetail;
 
 public interface GroupDetailMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByUIDGID(@Param("uid") Integer uid,@Param("gid") Integer gid);
 
     int insert(GroupDetail record);
 
-    int insertSelective(GroupDetail record);
+    List<GroupDetail> selectByUID(Integer uid);
+    
+    List<GroupDetail> selectByGID(Integer gid);
 
-    GroupDetail selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(GroupDetail record);
-
-    int updateByPrimaryKey(GroupDetail record);
 }

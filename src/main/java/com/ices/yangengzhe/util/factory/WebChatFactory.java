@@ -2,7 +2,6 @@ package com.ices.yangengzhe.util.factory;
 
 import org.springframework.web.context.ContextLoader;
 
-import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.socket.manager.IUserManager;
 import com.ices.yangengzhe.socket.manager.UserManager;
 import com.ices.yangengzhe.util.serializer.FastJsonSerializer;

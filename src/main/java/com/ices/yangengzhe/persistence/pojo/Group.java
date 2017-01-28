@@ -5,8 +5,6 @@ import java.util.Date;
 public class Group {
     private Integer id;
 
-    private Integer gid;
-
     private String name;
 
     private String headphoto;
@@ -23,14 +21,6 @@ public class Group {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getGid() {
-        return gid;
-    }
-
-    public void setGid(Integer gid) {
-        this.gid = gid;
     }
 
     public String getName() {

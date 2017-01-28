@@ -53,14 +53,11 @@ public class webServer {
             sender.sendOfflineMessage(Integer.valueOf(uidStr));
             return;
         }
-
         ToServerTextMessage toServerTextMessage = WebChatFactory.createSerializer().toObject(message,
                                                                                              ToServerTextMessage.class);
         // 得到接收的对象
         MessageSender sender = new MessageSender();
-
         sender.sendMessage(toServerTextMessage);
-
     }
 
     @OnError

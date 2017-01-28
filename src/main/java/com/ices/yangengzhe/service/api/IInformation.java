@@ -1,10 +1,6 @@
 package com.ices.yangengzhe.service.api;
 
 import java.util.HashMap;
-import java.util.List;
-
-import com.ices.yangengzhe.persistence.pojo.Friendgroup;
-import com.ices.yangengzhe.persistence.pojo.FriendgroupDetail;
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonResult;

@@ -14,6 +14,7 @@ public class FastJsonSerializer implements IJsonSerializer {
     /*
     * 使用fastjson序列化
     * */
+    @Override
     public <T> String toJSON(T t){
         if(t==null){
             return null;
@@ -25,6 +26,7 @@ public class FastJsonSerializer implements IJsonSerializer {
     /*
     * 使用fastjson反序列化
     * */
+    @Override
     public <T> T toObject(String json,Class<T> clazz){
         T t = null;
         try {
@@ -37,6 +39,7 @@ public class FastJsonSerializer implements IJsonSerializer {
     /*
     * tojsonArray
     * */
+    @Override
     public <T> List<T> toArray(String json,Class<T> clazz){
         try {
             List<T> list = JSON.parseArray(json, clazz);

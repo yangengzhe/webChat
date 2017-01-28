@@ -3,42 +3,38 @@
 <mapper namespace="com.ices.yangengzhe.persistence.dao.GroupMapper" >
   <resultMap id="BaseResultMap" type="com.ices.yangengzhe.persistence.pojo.Group" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="gid" property="gid" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="headphoto" property="headphoto" jdbcType="VARCHAR" />
-    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="_desc" property="desc" jdbcType="VARCHAR" />
     <result column="owner_uid" property="ownerUid" jdbcType="INTEGER" />
     <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, gid, name, headphoto, desc, owner_uid, addtime
+    id, name, headphoto, _desc, owner_uid, addtime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from group
+    from groups
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from group
+    delete from groups
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    insert into group (id, gid, name, 
-      headphoto, desc, owner_uid, 
+  <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Group" useGeneratedKeys="true" keyProperty="id">
+    insert into groups (id, name, 
+      headphoto, _desc, owner_uid, 
       addtime)
-    values (#{id,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER},  #{name,jdbcType=VARCHAR}, 
       #{headphoto,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{ownerUid,jdbcType=INTEGER}, 
       #{addtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    insert into group
+    insert into groups
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
-      </if>
-      <if test="gid != null" >
-        gid,
       </if>
       <if test="name != null" >
         name,
@@ -47,7 +43,7 @@
         headphoto,
       </if>
       <if test="desc != null" >
-        desc,
+        _desc,
       </if>
       <if test="ownerUid != null" >
         owner_uid,
@@ -59,9 +55,6 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="gid != null" >
-        #{gid,jdbcType=INTEGER},
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
@@ -81,11 +74,8 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    update group
+    update groups
     <set >
-      <if test="gid != null" >
-        gid = #{gid,jdbcType=INTEGER},
-      </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
@@ -93,7 +83,7 @@
         headphoto = #{headphoto,jdbcType=VARCHAR},
       </if>
       <if test="desc != null" >
-        desc = #{desc,jdbcType=VARCHAR},
+        _desc = #{desc,jdbcType=VARCHAR},
       </if>
       <if test="ownerUid != null" >
         owner_uid = #{ownerUid,jdbcType=INTEGER},
@@ -105,11 +95,11 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    update group
-    set gid = #{gid,jdbcType=INTEGER},
+    update groups
+    set 
       name = #{name,jdbcType=VARCHAR},
       headphoto = #{headphoto,jdbcType=VARCHAR},
-      desc = #{desc,jdbcType=VARCHAR},
+      _desc = #{desc,jdbcType=VARCHAR},
       owner_uid = #{ownerUid,jdbcType=INTEGER},
       addtime = #{addtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}

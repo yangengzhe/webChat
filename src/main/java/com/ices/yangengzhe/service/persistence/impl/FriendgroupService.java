@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.ices.yangengzhe.persistence.dao.FriendgroupMapper;
 import com.ices.yangengzhe.persistence.pojo.Friendgroup;
-import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.persistence.IFriendgroupService;
 
 @Service

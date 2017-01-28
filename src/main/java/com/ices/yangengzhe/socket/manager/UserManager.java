@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.ehcache.impl.internal.concurrent.ConcurrentHashMap;
 
-import com.ices.yangengzhe.socket.sender.MessageSender;
 import com.ices.yangengzhe.util.pojo.SocketUser;
 
 
@@ -35,6 +34,7 @@ public class UserManager implements IUserManager {
     }
 
 
+    @Override
     public boolean addUser(SocketUser user) {
 
         String sessionId = user.getSession().getId();
@@ -46,6 +46,7 @@ public class UserManager implements IUserManager {
     }
 
 
+    @Override
     public int removeUser(SocketUser user) {
         String sessionId =  user.getSession().getId();
         int userid = removeUser(sessionId);
@@ -54,10 +55,12 @@ public class UserManager implements IUserManager {
     }
 
 
+    @Override
     public int getOnlineCount() {
         return socketUserMap.size();
     }
 
+    @Override
     public SocketUser getUser(int userId){
         String key = Integer.toString(userId);
         Map map = onLineUserManager.getOnLineUsers();

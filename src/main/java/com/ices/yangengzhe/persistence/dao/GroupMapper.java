@@ -10,7 +10,7 @@ public interface GroupMapper {
     int insertSelective(Group record);
 
     Group selectByPrimaryKey(Integer id);
-
+    
     int updateByPrimaryKeySelective(Group record);
 
     int updateByPrimaryKey(Group record);

@@ -2,8 +2,6 @@ package com.ices.yangengzhe.service.persistence;
 
 import java.util.List;
 
-import com.ices.yangengzhe.persistence.pojo.Msg;
-import com.ices.yangengzhe.util.pojo.message.ToClientTextMessage;
 import com.ices.yangengzhe.util.pojo.message.ToServerTextMessage;
 
 /**
@@ -30,7 +28,7 @@ public interface IMessageService {
     
     
     // 插入未读信息数据
-    void offlineMessage(ToServerTextMessage message);
+    void offlineMessage(Integer recvUid,ToServerTextMessage message);
 
     // 获取未读好友信息
     List<List<String>> getFriendUnreadMessage(Integer id);
