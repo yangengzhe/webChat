@@ -1,5 +1,9 @@
 package com.ices.yangengzhe.persistence.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.ices.yangengzhe.persistence.pojo.User;
 
 public interface UserMapper {
@@ -17,4 +21,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    List<User> searchUserByKeyword(@Param("keyword")String keyword);
 }

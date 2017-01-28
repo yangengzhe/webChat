@@ -26,6 +26,13 @@
     from user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
+  <select id="searchUserByKeyword" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  	<bind name="pattern" value="'%' + keyword + '%'" />
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where uid LIKE #{pattern} OR name LIKE #{pattern}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}

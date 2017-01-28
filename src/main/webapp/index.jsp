@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html>
@@ -154,9 +153,11 @@ html {
 								//,isgroup: false //是否开启群组
 								//,min: true //是否始终最小化主面板（默认false）
 								,
-								chatLog : './demo/chatlog.html' //聊天记录地址
+								chatLog : './html/chatlog.html' //聊天记录地址
 								,
-								find : './demo/find.html'
+								msgbox: './html/msgbox.html'
+								,
+								find : './html/find.jsp?uid='+im.getUid()
 							,copyright: true //是否授权
 							});
 
@@ -228,7 +229,9 @@ html {
 
 							//layim建立就绪
 							layim.on('ready', function(res) {
+								
 								im.sendData("_online_user_"+'${param.uid}');//获取离线消息
+								layim.msgbox(5); //获取消息盒子
 								/*
 								 //添加好友（如果检测到该socket）
 								 layim.addList({

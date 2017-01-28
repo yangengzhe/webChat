@@ -1,6 +1,7 @@
 package com.ices.yangengzhe.service.api;
 
 import java.util.HashMap;
+
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonResult;
@@ -19,4 +20,7 @@ public interface IInformation {
     public void addUser(Integer uid,String name,String photo,String sign);
     
     public User findUserByUid(Integer uid);
+    
+    //查找好友
+    public JsonResult searchUserByKeyword(String Keyword);
 }

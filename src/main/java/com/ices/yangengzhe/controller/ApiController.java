@@ -1,6 +1,7 @@
 package com.ices.yangengzhe.controller;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,14 @@ public class ApiController {
         
         String id  = request.getParameter("id");
         JsonResult result = group.getGroupMembers(Integer.valueOf(id));
+        sendResult(response,result);
+    }
+    
+    @RequestMapping("/searchUser")
+    public void searchUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String keyword  = request.getParameter("keyword");
+        keyword =new String(keyword.getBytes("ISO-8859-1"), "UTF-8");
+        JsonResult result = information.searchUserByKeyword(keyword);
         sendResult(response,result);
     }
     

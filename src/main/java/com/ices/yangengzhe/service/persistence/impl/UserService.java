@@ -1,6 +1,8 @@
 package com.ices.yangengzhe.service.persistence.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -45,6 +47,13 @@ public class UserService implements IUserService {
         user.setPassword(Security.getPassword(uid));
         this.userDao.insert(user);
         return null;
+    }
+
+    @Override
+    public List<User> searchUsersByKeyword(String keyword) {
+        if(keyword==null || keyword.equals(""))
+            return new ArrayList<User>();
+        return userDao.searchUserByKeyword(keyword);
     }
 
 }

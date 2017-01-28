@@ -1,5 +1,6 @@
 package com.ices.yangengzhe.service.api.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -77,6 +78,26 @@ public class Information implements IInformation {
     @Override
     public User findUserByUid(Integer uid) {
         return userService.getUserByUID(uid);
+    }
+
+
+
+    @Override
+    public JsonResult searchUserByKeyword(String keyword) {
+        HashMap<String, Object> data = new HashMap<String, Object>();
+        List<User> users = userService.searchUsersByKeyword(keyword);
+        List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+        for (User user : users) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+            map.put("username", user.getName());
+            map.put("id", user.getUid());
+            map.put("avatar", user.getHeadphoto());
+            map.put("sign", user.getSign());
+            map.put("status", "online");
+            list.add(map);
+        }
+        data.put("list", list);
+        return new JsonResult(ResponseType.SUCCESS,data);
     }
 
     

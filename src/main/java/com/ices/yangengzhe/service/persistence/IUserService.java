@@ -1,5 +1,7 @@
 package com.ices.yangengzhe.service.persistence;
 
+import java.util.List;
+
 import com.ices.yangengzhe.persistence.pojo.User;
 
 /**
@@ -14,4 +16,6 @@ public interface IUserService {
     public User getUserByUID(int userUID);
     
     public String insertUser(Integer Uid,String name,String photo,String sign);
+    
+    public List<User> searchUsersByKeyword(String keyword);
 }
