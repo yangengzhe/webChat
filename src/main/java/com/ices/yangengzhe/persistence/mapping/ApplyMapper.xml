@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ices.yangengzhe.persistence.dao.ApplyMapper" >
+  <resultMap id="BaseResultMap" type="com.ices.yangengzhe.persistence.pojo.Apply" >
+    <id column="fromuser" property="fromuser" jdbcType="INTEGER" />
+    <id column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="fromuser_fid" property="fromuserFid" jdbcType="INTEGER" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="msg" property="msg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fromuser, uid, fromuser_fid, addtime, msg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ices.yangengzhe.persistence.pojo.ApplyKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from _apply
+    where fromuser = #{fromuser,jdbcType=INTEGER}
+      and uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByUID" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from _apply
+    where uid = #{uid,jdbcType=INTEGER}
+    Order by addtime Desc
+    limit #{offset,jdbcType=INTEGER},#{count,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countByUID" resultType="java.lang.Integer">
+    select 
+    count(addtime)
+    from _apply
+    where uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="countByFromUid" resultType="java.lang.Integer">
+    select 
+    count(addtime)
+    from _apply
+    where fromuser = #{fromuser,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.ApplyKey" >
+    delete from _apply
+    where fromuser = #{fromuser,jdbcType=INTEGER}
+      and uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
+    insert into _apply (fromuser, uid, fromuser_fid, 
+      addtime, msg)
+    values (#{fromuser,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{fromuserFid,jdbcType=INTEGER}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{msg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
+    insert into _apply
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fromuser != null" >
+        fromuser,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="fromuserFid != null" >
+        fromuser_fid,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="msg != null" >
+        msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fromuser != null" >
+        #{fromuser,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="fromuserFid != null" >
+        #{fromuserFid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msg != null" >
+        #{msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
+    update _apply
+    <set >
+      <if test="fromuserFid != null" >
+        fromuser_fid = #{fromuserFid,jdbcType=INTEGER},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="msg != null" >
+        msg = #{msg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where fromuser = #{fromuser,jdbcType=INTEGER}
+      and uid = #{uid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
+    update _apply
+    set fromuser_fid = #{fromuserFid,jdbcType=INTEGER},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      msg = #{msg,jdbcType=VARCHAR}
+    where fromuser = #{fromuser,jdbcType=INTEGER}
+      and uid = #{uid,jdbcType=INTEGER}
+  </update>
+</mapper>
