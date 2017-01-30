@@ -79,5 +79,9 @@
     	id="groupService"
         class="com.ices.yangengzhe.service.persistence.impl.GroupService">
     </bean>
+    <bean
+    	id="message"
+        class="com.ices.yangengzhe.service.api.impl.Message">
+    </bean>
     
 </beans>

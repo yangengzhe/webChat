@@ -7,11 +7,15 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
+
+import com.ices.yangengzhe.service.api.IMessage;
 import com.ices.yangengzhe.service.persistence.IUserLogService;
 import com.ices.yangengzhe.socket.manager.OnLineUserManager;
 import com.ices.yangengzhe.socket.sender.MessageSender;
 import com.ices.yangengzhe.socket.sender.MessageParse;
+import com.ices.yangengzhe.util.Parse;
 import com.ices.yangengzhe.util.enums.OnlineStatus;
+import com.ices.yangengzhe.util.enums.ToClientMessageType;
 import com.ices.yangengzhe.util.enums.UserLogType;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
 import com.ices.yangengzhe.util.pojo.SocketUser;
@@ -27,6 +31,8 @@ import com.ices.yangengzhe.util.pojo.message.ToServerTextMessage;
 public class webServer {
 
     private IUserLogService userLogService = (IUserLogService) WebChatFactory.beanFactory("userLogService");
+    
+    private IMessage messageService = (IMessage) WebChatFactory.beanFactory("message");
 
     @OnOpen
     public void open(Session session, @PathParam("uid") int uid) {
@@ -51,6 +57,12 @@ public class webServer {
             // 发送离线消息
             MessageSender sender = new MessageSender();
             sender.sendOfflineMessage(Integer.valueOf(uidStr));
+            return;
+        }else if (message.startsWith("_unread_mesg_")) {
+            String uidStr = message.substring("_unread_mesg_".length());
+            // 发送消息数量
+            String resultCount = Parse.getResultToString(ToClientMessageType.SERVICE_MESSAGE_COUNT, messageService.countUnreadMessage(Integer.valueOf(uidStr)));
+            session.getAsyncRemote().sendText(resultCount);
             return;
         }
         ToServerTextMessage toServerTextMessage = WebChatFactory.createSerializer().toObject(message,

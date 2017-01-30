@@ -73,6 +73,10 @@ html {
 					//更改状态
 					layim.setFriendStatus(msg.msg.id, msg.msg.status);
 					break;
+				case 'SERVICE_MESSAGE_COUNT':
+					if(msg.msg != 0)
+						layim.msgbox(msg.msg); //设置消息盒子
+					break;
 				default:
 					break;
 				}
@@ -157,7 +161,7 @@ html {
 								,
 								msgbox: './html/msgbox.html'
 								,
-								find : './html/find.jsp?uid='+im.getUid()
+								find : './html/find.html'
 							,copyright: true //是否授权
 							});
 
@@ -231,7 +235,8 @@ html {
 							layim.on('ready', function(res) {
 								
 								im.sendData("_online_user_"+'${param.uid}');//获取离线消息
-								layim.msgbox(5); //获取消息盒子
+								im.sendData("_unread_mesg_"+'${param.uid}');//获得未读消息数
+								
 								/*
 								 //添加好友（如果检测到该socket）
 								 layim.addList({

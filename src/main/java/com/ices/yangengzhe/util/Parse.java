@@ -1,8 +1,13 @@
 package com.ices.yangengzhe.util;
 
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import com.ices.yangengzhe.persistence.pojo.Msg;
 import com.ices.yangengzhe.persistence.pojo.User;
@@ -48,4 +53,44 @@ public class Parse {
         return resultlist;
     }
     
+    public static String getResultToString(ToClientMessageType type,Object message){
+      //返回统一消息接口
+        ToClientMessageResult result = new ToClientMessageResult();
+        result.setMsg(message);
+        result.setType(type);
+        return WebChatFactory.createSerializer().toJSON(result);
+    }
+    
+    public static String showTime(Date date){
+        long dataTime = date.getTime();
+        Calendar calendar =  Calendar.getInstance();
+        calendar.setTimeInMillis(dataTime);
+        long now=System.currentTimeMillis();//当前时间毫秒数 
+        long today=now/(1000*3600*24)*(1000*3600*24)-TimeZone.getDefault().getRawOffset();//今天零点零分零秒的毫秒数
+        if(dataTime<today-1000*60*60*24*30l){  
+            return calendar.get(Calendar.YEAR)+"-"+(calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DAY_OF_MONTH)+" "+calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+"";  
+        }  
+        if(dataTime<today-1000*60*60*24*2l){  
+            return (calendar.get(Calendar.MONTH)+1)+"-"+calendar.get(Calendar.DAY_OF_MONTH)+" "+calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+"";  
+        }  
+        if(dataTime<today-1000*60*60*24*1l){  
+            return "前天 "+calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+"";  
+        }  
+        if(dataTime<today){  
+            return "昨天 "+calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE)+"";  
+        }
+        if(dataTime>now-1000*60l){  
+            return "刚刚";  
+        }  
+        if(dataTime>now-1000*60*2l){  
+            return "一分钟前";  
+        }  
+        if(dataTime>now-1000*60*3l){  
+            return "两分钟前";  
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        return formatter.format(date);
+    }  
+    public static void main(String args[]){
+    }
 }

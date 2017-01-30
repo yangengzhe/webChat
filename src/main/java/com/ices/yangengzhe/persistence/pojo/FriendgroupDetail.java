@@ -3,6 +3,8 @@ package com.ices.yangengzhe.persistence.pojo;
 public class FriendgroupDetail {
     private Integer id;
 
+    private Integer fidOwner;
+    
     private Integer fid;
 
     private Integer uid;
@@ -18,6 +20,18 @@ public class FriendgroupDetail {
     public void setUser(User user) {
         this.user = user;
     }
+
+    
+    public Integer getFidOwner() {
+        return fidOwner;
+    }
+
+
+    
+    public void setFidOwner(Integer fidOwner) {
+        this.fidOwner = fidOwner;
+    }
+
 
     public Integer getId() {
         return id;
