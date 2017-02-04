@@ -2,6 +2,8 @@ package com.ices.yangengzhe.persistence.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.ices.yangengzhe.persistence.pojo.Friendgroup;
 
 public interface FriendgroupMapper {
@@ -13,6 +15,8 @@ public interface FriendgroupMapper {
     int insert(Friendgroup record);
 
     int insertSelective(Friendgroup record);
+    
+    List<Friendgroup> selectByNameUID(@Param("name")String name,@Param("uid")Integer uid);
 
     Friendgroup selectByPrimaryKey(Integer id);
 

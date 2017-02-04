@@ -37,7 +37,7 @@ public class Information implements IInformation {
         
         User user = userService.getUserByUID(uid);
         if(user == null) return ResponseType.USER_NOTFOUND;
-//        if(!Security.authentication(uid, password)) return ResponseType.USER_WRONG;
+        if(!Security.authentication(uid, password)) return ResponseType.USER_WRONG;
         
         //个人信息
         HashMap<String, Object> mine = new HashMap<String, Object>();

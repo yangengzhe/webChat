@@ -9,6 +9,8 @@ import com.ices.yangengzhe.persistence.pojo.FriendgroupDetail;
 public interface FriendgroupDetailMapper {
 
     List<FriendgroupDetail> selectUsersByFID(Integer fid);
+    
+    List<FriendgroupDetail> selectUsersByFIDUID(@Param("fid")Integer fid,@Param("uid")Integer uid);
 
     int deleteByPrimaryKey(Integer id);
 

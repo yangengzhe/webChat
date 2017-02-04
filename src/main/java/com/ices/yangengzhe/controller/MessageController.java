@@ -1,8 +1,6 @@
 package com.ices.yangengzhe.controller;
 
 import java.io.IOException;
-import java.net.URLDecoder;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ices.yangengzhe.service.api.IGroup;
-import com.ices.yangengzhe.service.api.IInformation;
 import com.ices.yangengzhe.service.api.IMessage;
 import com.ices.yangengzhe.util.factory.WebChatFactory;
 import com.ices.yangengzhe.util.pojo.JsonPageResult;

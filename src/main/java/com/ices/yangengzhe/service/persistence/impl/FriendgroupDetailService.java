@@ -27,12 +27,16 @@ public class FriendgroupDetailService implements IFriendgroupDetailService {
 
     @Override
     public void insertFG(int fid, int userUID) {
+        List<FriendgroupDetail> list = friendgroupDetailDao.selectUsersByFIDUID(fid,userUID);
+        if(list!=null && list.size()>0)
+            return;
         FriendgroupDetail fd = new FriendgroupDetail();
         fd.setFid(fid);
         fd.setUid(userUID);
         Friendgroup fgroup = friendgroupDao.selectByPrimaryKey(fid);
         fd.setFidOwner(fgroup.getUid());
-        friendgroupDetailDao.insert(fd);
+        if(!isFriend(fgroup.getUid(), userUID))
+            friendgroupDetailDao.insert(fd);
     }
 
     @Override

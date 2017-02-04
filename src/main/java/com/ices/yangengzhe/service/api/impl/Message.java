@@ -15,8 +15,6 @@ import com.ices.yangengzhe.service.persistence.IApplyService;
 import com.ices.yangengzhe.service.persistence.IFriendgroupDetailService;
 import com.ices.yangengzhe.service.persistence.IMessageboxService;
 import com.ices.yangengzhe.service.persistence.IUserService;
-import com.ices.yangengzhe.service.persistence.impl.ApplyService;
-import com.ices.yangengzhe.service.persistence.impl.UserService;
 import com.ices.yangengzhe.util.Parse;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonPageResult;

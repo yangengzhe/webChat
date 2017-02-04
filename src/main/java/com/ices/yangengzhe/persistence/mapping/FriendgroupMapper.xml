@@ -23,6 +23,12 @@
     from friendgroup
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByNameUID" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from friendgroup
+    where name = #{name,jdbcType=VARCHAR} and uid = #{uid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from friendgroup
     where id = #{id,jdbcType=INTEGER}

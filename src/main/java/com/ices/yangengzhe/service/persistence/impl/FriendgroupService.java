@@ -24,6 +24,9 @@ public class FriendgroupService implements IFriendgroupService {
 
     @Override
     public int insertFG(String name,int userUID) {
+        List<Friendgroup> list = friendgroupDao.selectByNameUID(name, userUID);
+        if(list!=null && list.size()>0)
+            return list.get(0).getId();
         Friendgroup friendgroup = new Friendgroup();
         friendgroup.setAddtime(new Date());
         friendgroup.setName(name);

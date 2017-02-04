@@ -37,6 +37,9 @@ public class UserService implements IUserService {
     
     @Override
     public String insertUser(Integer uid, String name, String photo, String sign) {
+        User u = getUserByUID(uid);
+        if(u!=null && u.getUid().equals(uid))
+            return null;
         User user = new User();
         user.setAddtime(new Date());
         user.setHeadphoto(photo);
