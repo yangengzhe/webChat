@@ -14,21 +14,21 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user_log
+    from webchat_user_log
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user_log
+    delete from webchat_user_log
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.UserLog" >
-    insert into user_log (id, uid, ip, 
+    insert into webchat_user_log (id, uid, ip, 
       addtime, log)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, 
       #{addtime,jdbcType=TIMESTAMP}, #{log,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.UserLog" >
-    insert into user_log
+    insert into webchat_user_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -65,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.UserLog" >
-    update user_log
+    update webchat_user_log
     <set >
       <if test="uid != null" >
         uid = #{uid,jdbcType=INTEGER},
@@ -83,7 +83,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.UserLog" >
-    update user_log
+    update webchat_user_log
     set uid = #{uid,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},
       addtime = #{addtime,jdbcType=TIMESTAMP},

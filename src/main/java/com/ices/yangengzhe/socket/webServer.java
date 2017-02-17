@@ -67,6 +67,7 @@ public class webServer {
         }
         ToServerTextMessage toServerTextMessage = WebChatFactory.createSerializer().toObject(message,
                                                                                              ToServerTextMessage.class);
+        System.out.println(2);
         // 得到接收的对象
         MessageSender sender = new MessageSender();
         sender.sendMessage(toServerTextMessage);

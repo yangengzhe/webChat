@@ -13,6 +13,7 @@ import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.api.IFriend;
 import com.ices.yangengzhe.service.persistence.IFriendgroupDetailService;
 import com.ices.yangengzhe.service.persistence.IFriendgroupService;
+import com.ices.yangengzhe.util.Global;
 import com.ices.yangengzhe.util.security.Security;
 
 @Service
@@ -63,7 +64,7 @@ public class Friend implements IFriend {
             HashMap<String, Object> friendgroupDetail_map = new HashMap<String, Object>();
             friendgroupDetail_map.put("username", friendgroupDetail.getUser().getName());
             friendgroupDetail_map.put("id", friendgroupDetail.getUser().getUid());
-            friendgroupDetail_map.put("avatar", friendgroupDetail.getUser().getHeadphoto());
+            friendgroupDetail_map.put("avatar", Global.URL+friendgroupDetail.getUser().getHeadphoto());
             friendgroupDetail_map.put("sign", friendgroupDetail.getUser().getSign());
             if (Security.isLogin(friendgroupDetail.getUser().getUid())) friendgroupDetail_map.put("status", "online");
             else friendgroupDetail_map.put("status", "offline");

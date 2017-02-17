@@ -16,12 +16,12 @@
 	<select id="selectByGidId" resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
-		from msg_unread
+		from webchat_msg_unread
 		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteMsg">
 		delete from
-		msg_unread
+		webchat_msg_unread
 		where id = #{id,jdbcType=INTEGER} and gid = #{gid,jdbcType=INTEGER} and fromuser = #{fromuser,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
 	</delete>
 	<insert id="countMsg">
@@ -36,7 +36,7 @@
 
 	</insert>
 	<insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.MsgUnread">
-		insert into msg_unread
+		insert into webchat_msg_unread
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				id,
@@ -79,7 +79,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.MsgUnread">
-		update msg_unread
+		update webchat_msg_unread
 		<set>
 			<if test="uid != null">
 				uid = #{uid,jdbcType=INTEGER},
@@ -100,7 +100,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.MsgUnread">
-		update msg_unread
+		update webchat_msg_unread
 		set uid = #{uid,jdbcType=INTEGER},
 		fromuser =
 		#{fromuser,jdbcType=INTEGER},

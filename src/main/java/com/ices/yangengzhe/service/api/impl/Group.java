@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.ices.yangengzhe.persistence.pojo.User;
 import com.ices.yangengzhe.service.api.IGroup;
 import com.ices.yangengzhe.service.persistence.IGroupService;
+import com.ices.yangengzhe.util.Global;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonResult;
 
@@ -51,7 +52,7 @@ public class Group implements IGroup {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("groupname", group.getName());
             map.put("id", group.getId());
-            map.put("avatar", group.getHeadphoto());
+            map.put("avatar", Global.URL+group.getHeadphoto());
             result.add(map);
         }
         return result;
@@ -66,7 +67,7 @@ public class Group implements IGroup {
         User user = groupService.getGroupOwner(gid);
         owner.put("username", user.getName());
         owner.put("id", user.getUid());
-        owner.put("avatar", user.getHeadphoto());
+        owner.put("avatar", Global.URL+user.getHeadphoto());
         owner.put("sign", user.getSign());
         data.put("owner", owner);
         
@@ -77,7 +78,7 @@ public class Group implements IGroup {
             HashMap<String, Object> userMap =new HashMap<String, Object>();
             userMap.put("username", user2.getName());
             userMap.put("id", user2.getUid());
-            userMap.put("avatar", user2.getHeadphoto());
+            userMap.put("avatar", Global.URL+user2.getHeadphoto());
             userMap.put("sign", user2.getSign());
             memberslist.add(userMap);
         }

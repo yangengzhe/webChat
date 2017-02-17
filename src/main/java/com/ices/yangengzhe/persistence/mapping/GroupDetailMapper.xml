@@ -12,21 +12,21 @@
   <select id="selectByUID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from group_detail
+    from webchat_group_detail
     where uid = #{uid,jdbcType=INTEGER}
   </select>
   <select id="selectByGID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from group_detail
+    from webchat_group_detail
     where gid = #{gid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByUIDGID" >
-    delete from group_detail
+    delete from webchat_group_detail
     where gid = #{gid,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.GroupDetail" >
-    insert into group_detail (gid, uid, 
+    insert into webchat_group_detail (gid, uid, 
       addtime)
     values (#{gid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, 
       #{addtime,jdbcType=TIMESTAMP})

@@ -14,7 +14,7 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ices.yangengzhe.persistence.pojo.ApplyKey" >
     select 
     <include refid="Base_Column_List" />
-    from _apply
+    from webchat_apply
     where fromuser = #{fromuser,jdbcType=INTEGER}
       and uid = #{uid,jdbcType=INTEGER}
   </select>
@@ -22,7 +22,7 @@
   <select id="selectByUID" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from _apply
+    from webchat_apply
     where uid = #{uid,jdbcType=INTEGER}
     Order by addtime Desc
     limit #{offset,jdbcType=INTEGER},#{count,jdbcType=INTEGER}
@@ -31,30 +31,30 @@
   <select id="countByUID" resultType="java.lang.Integer">
     select 
     count(addtime)
-    from _apply
+    from webchat_apply
     where uid = #{uid,jdbcType=INTEGER}
   </select>
   
   <select id="countByFromUid" resultType="java.lang.Integer">
     select 
     count(addtime)
-    from _apply
+    from webchat_apply
     where fromuser = #{fromuser,jdbcType=INTEGER} and uid = #{uid,jdbcType=INTEGER}
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.ApplyKey" >
-    delete from _apply
+    delete from webchat_apply
     where fromuser = #{fromuser,jdbcType=INTEGER}
       and uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
-    insert into _apply (fromuser, uid, fromuser_fid, 
+    insert into webchat_apply (fromuser, uid, fromuser_fid, 
       addtime, msg)
     values (#{fromuser,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{fromuserFid,jdbcType=INTEGER}, 
       #{addtime,jdbcType=TIMESTAMP}, #{msg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
-    insert into _apply
+    insert into webchat_apply
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="fromuser != null" >
         fromuser,
@@ -91,7 +91,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
-    update _apply
+    update webchat_apply
     <set >
       <if test="fromuserFid != null" >
         fromuser_fid = #{fromuserFid,jdbcType=INTEGER},
@@ -107,7 +107,7 @@
       and uid = #{uid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Apply" >
-    update _apply
+    update webchat_apply
     set fromuser_fid = #{fromuserFid,jdbcType=INTEGER},
       addtime = #{addtime,jdbcType=TIMESTAMP},
       msg = #{msg,jdbcType=VARCHAR}

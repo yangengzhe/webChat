@@ -17,28 +17,28 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from webchat_user
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByUID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from user
+    from webchat_user
     where uid = #{uid,jdbcType=INTEGER}
   </select>
   <select id="searchUserByKeyword" resultMap="BaseResultMap" parameterType="java.lang.String" >
   	<bind name="pattern" value="'%' + keyword + '%'" />
     select 
     <include refid="Base_Column_List" />
-    from user
+    from webchat_user
     where uid LIKE #{pattern} OR name LIKE #{pattern}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
+    delete from webchat_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.User" >
-    insert into user (id, uid, name, 
+    insert into webchat_user (id, uid, name, 
       password, sign, headphoto, 
       addtime, online)
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
@@ -46,7 +46,7 @@
       #{addtime,jdbcType=TIMESTAMP}, #{online,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.User" >
-    insert into user
+    insert into webchat_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -101,7 +101,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.User" >
-    update user
+    update webchat_user
     <set >
       <if test="uid != null" >
         uid = #{uid,jdbcType=INTEGER},
@@ -128,7 +128,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.User" >
-    update user
+    update webchat_user
     set uid = #{uid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

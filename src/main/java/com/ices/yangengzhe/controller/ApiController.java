@@ -51,6 +51,7 @@ public class ApiController {
     public void sendResult(HttpServletResponse response,JsonResult result) throws IOException{
         response.setCharacterEncoding("UTF-8");
         IJsonSerializer serializer = WebChatFactory.createSerializer();
+        response.setHeader("Access-Control-Allow-Origin", "*");//允许跨域
         response.getWriter().write(serializer.toJSON(result));
     }
 }

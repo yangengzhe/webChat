@@ -12,6 +12,7 @@ import com.ices.yangengzhe.service.api.IFriend;
 import com.ices.yangengzhe.service.api.IGroup;
 import com.ices.yangengzhe.service.api.IInformation;
 import com.ices.yangengzhe.service.persistence.IUserService;
+import com.ices.yangengzhe.util.Global;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonResult;
 import com.ices.yangengzhe.util.security.Security;
@@ -37,7 +38,7 @@ public class Information implements IInformation {
         
         User user = userService.getUserByUID(uid);
         if(user == null) return ResponseType.USER_NOTFOUND;
-        if(!Security.authentication(uid, password)) return ResponseType.USER_WRONG;
+        //if(!Security.authentication(uid, password)) return ResponseType.USER_WRONG;
         
         //个人信息
         HashMap<String, Object> mine = new HashMap<String, Object>();
@@ -45,7 +46,7 @@ public class Information implements IInformation {
         mine.put("id", user.getUid());
         mine.put("status", "online");
         mine.put("sign", user.getSign());
-        mine.put("avatar", user.getHeadphoto());
+        mine.put("avatar", Global.URL+user.getHeadphoto());
         map.put("mine", mine);
         
         //好友分组
@@ -91,7 +92,7 @@ public class Information implements IInformation {
             HashMap<String, Object> map = new HashMap<String, Object>();
             map.put("username", user.getName());
             map.put("id", user.getUid());
-            map.put("avatar", user.getHeadphoto());
+            map.put("avatar", Global.URL+user.getHeadphoto());
             map.put("sign", user.getSign());
             map.put("status", "online");
             list.add(map);

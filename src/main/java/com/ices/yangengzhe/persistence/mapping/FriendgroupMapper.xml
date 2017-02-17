@@ -14,33 +14,33 @@
   <select id="selectByUID" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from friendgroup
+    from webchat_friendgroup
     where uid = #{uid,jdbcType=INTEGER}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from friendgroup
+    from webchat_friendgroup
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectByNameUID" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from friendgroup
+    from webchat_friendgroup
     where name = #{name,jdbcType=VARCHAR} and uid = #{uid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from friendgroup
+    delete from webchat_friendgroup
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" useGeneratedKeys="true" keyProperty="id">
-    insert into friendgroup (id, name, uid, 
+    insert into webchat_friendgroup (id, name, uid, 
       addtime, sort)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
       #{addtime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" >
-    insert into friendgroup
+    insert into webchat_friendgroup
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -77,7 +77,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" >
-    update friendgroup
+    update webchat_friendgroup
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -95,7 +95,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Friendgroup" >
-    update friendgroup
+    update webchat_friendgroup
     set name = #{name,jdbcType=VARCHAR},
       uid = #{uid,jdbcType=INTEGER},
       addtime = #{addtime,jdbcType=TIMESTAMP},

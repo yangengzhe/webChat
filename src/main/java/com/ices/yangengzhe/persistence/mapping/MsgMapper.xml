@@ -15,7 +15,7 @@
   <select id="selectByUIDTop" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from msg
+    from webchat_msg
     where uid = #{uid,jdbcType=INTEGER}
     order by id DESC
     limit #{num,jdbcType=INTEGER}
@@ -23,7 +23,7 @@
   <select id="selectByFUIDTop" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from msg
+    from webchat_msg
     where uid = #{uid,jdbcType=INTEGER} and fromuser = #{fromuser,jdbcType=INTEGER}
     order by id DESC
     limit #{num,jdbcType=INTEGER}
@@ -32,7 +32,7 @@
   <select id="selectByGIDTop" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from msg
+    from webchat_msg
     where gid = #{gid,jdbcType=INTEGER}
     order by id DESC
     limit #{num,jdbcType=INTEGER}
@@ -41,7 +41,7 @@
   <select id="selectByFromIDTop" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from msg
+    from webchat_msg
     where fromuser = #{fromuser,jdbcType=INTEGER}
     order by id DESC
     limit #{num,jdbcType=INTEGER}
@@ -50,15 +50,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from msg
+    from webchat_msg
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from msg
+    delete from webchat_msg
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Msg" >
-    insert into msg (id, uid, fromuser, 
+    insert into webchat_msg (id, uid, fromuser, 
       gid, msg, addtime
       )
     values (#{id,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{fromuser,jdbcType=INTEGER}, 
@@ -66,7 +66,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Msg" >
-    insert into msg
+    insert into webchat_msg
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -109,7 +109,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Msg" >
-    update msg
+    update webchat_msg
     <set >
       <if test="uid != null" >
         uid = #{uid,jdbcType=INTEGER},
@@ -130,7 +130,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Msg" >
-    update msg
+    update webchat_msg
     set uid = #{uid,jdbcType=INTEGER},
       fromuser = #{fromuser,jdbcType=INTEGER},
       gid = #{gid,jdbcType=INTEGER},

@@ -15,6 +15,7 @@ import com.ices.yangengzhe.service.persistence.IApplyService;
 import com.ices.yangengzhe.service.persistence.IFriendgroupDetailService;
 import com.ices.yangengzhe.service.persistence.IMessageboxService;
 import com.ices.yangengzhe.service.persistence.IUserService;
+import com.ices.yangengzhe.util.Global;
 import com.ices.yangengzhe.util.Parse;
 import com.ices.yangengzhe.util.enums.ResponseType;
 import com.ices.yangengzhe.util.pojo.JsonPageResult;
@@ -63,7 +64,7 @@ public class Message implements IMessage {
                 User user = userService.getUserByUID(apply.getFromuser());
                 HashMap<String, Object> userMap = new HashMap<String, Object>();
                 userMap.put("id", user.getUid());
-                userMap.put("avatar", "../"+user.getHeadphoto());
+                userMap.put("avatar", Global.URL+user.getHeadphoto());
                 userMap.put("username", user.getName());
                 userMap.put("sign", user.getSign());
                 map.put("user", userMap);
@@ -84,7 +85,7 @@ public class Message implements IMessage {
                 User user = userService.getUserByUID(apply.getFromuser());
                 HashMap<String, Object> userMap = new HashMap<String, Object>();
                 userMap.put("id", user.getUid());
-                userMap.put("avatar", "../"+user.getHeadphoto());
+                userMap.put("avatar", Global.URL+user.getHeadphoto());
                 userMap.put("username", user.getName());
                 userMap.put("sign", user.getSign());
                 map.put("user", userMap);

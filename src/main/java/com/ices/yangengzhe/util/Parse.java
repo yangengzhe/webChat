@@ -23,7 +23,7 @@ public class Parse {
         ToClientTextMessage toClientTextMessage = new ToClientTextMessage();
 
         toClientTextMessage.setUsername(sender.getName());
-        toClientTextMessage.setAvatar(sender.getHeadphoto());
+        toClientTextMessage.setAvatar(Global.URL+sender.getHeadphoto());
         toClientTextMessage.setContent(message.getMsg());
         if(message.getGid()!=null && message.getGid()>0)
             toClientTextMessage.setType(ChatType.GROUP.getName());

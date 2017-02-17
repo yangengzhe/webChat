@@ -15,15 +15,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from groups
+    from webchat_groups
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from groups
+    delete from webchat_groups
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ices.yangengzhe.persistence.pojo.Group" useGeneratedKeys="true" keyProperty="id">
-    insert into groups (id, name, 
+    insert into webchat_groups (id, name, 
       headphoto, _desc, owner_uid, 
       addtime)
     values (#{id,jdbcType=INTEGER},  #{name,jdbcType=VARCHAR}, 
@@ -31,7 +31,7 @@
       #{addtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    insert into groups
+    insert into webchat_groups
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -74,7 +74,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    update groups
+    update webchat_groups
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
@@ -95,7 +95,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ices.yangengzhe.persistence.pojo.Group" >
-    update groups
+    update webchat_groups
     set 
       name = #{name,jdbcType=VARCHAR},
       headphoto = #{headphoto,jdbcType=VARCHAR},

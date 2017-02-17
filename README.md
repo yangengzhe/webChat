@@ -4,6 +4,8 @@
 
 **注意：由于layim非开源，故本项目中移除该部分功能，无法导入直接运行。需要将layui文件夹拷贝到/webapp/js/目录下**
 
+IP地址修改：Global.java URL index.jsp jdbc.properties
+
 ## 功能
 
 1. 私聊、群聊
