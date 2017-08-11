@@ -6,6 +6,14 @@
 
 IP地址修改：Global.java URL index.jsp jdbc.properties
 
+## 在线示例
+
+用户yan：[点击登录](http://www.7tool.cn:8090/webchat/?uid=10000&key=10000)
+用户张三：[点击登录](http://www.7tool.cn:8090/webchat/?uid=10001&key=10001)
+用户李四：[点击登录](http://www.7tool.cn:8090/webchat/?uid=10002&key=10002)
+
+测试步骤：同时点击多个链接，登陆多个账户进行相互消息测试。
+
 ## 功能
 
 1. 私聊、群聊
@@ -90,8 +98,22 @@ IP地址修改：Global.java URL index.jsp jdbc.properties
 
 工厂模式、单列模式、代理模式、过滤器模式
 
+## 注意
+
+本项目中缺少两部分：com.ices.yangengzhe.util.security.Security类和SQL文件
+
+- Security：用于用户的权限验证，包含：getPassword、authentication和isLogin方法。
+- SQL文件：mysql数据库，包含：结构+测试数据+存储过程
+
+以上部分由于其他原因暂不公开，但是不影响整体的功能逻辑，对于学习者不会有任何影响。
+本项目只是供学习使用，相信根据代码也有能力完善以上两部分，故不再讨论或索取以上两部分相关内容。
+
 ## 帮助支持
 
 可在该项目的Issues中讨论 或 加入QQ群：194895016
 
 by 爱上极客(http://www.i3geek.com)
+
+---
+
+喜欢的请点击star or fork
