@@ -12,7 +12,7 @@ IP地址修改：Global.java URL index.jsp jdbc.properties
 用户张三：[点击登录](http://www.7tool.cn:8090/webchat/?uid=10001&key=10001)
 用户李四：[点击登录](http://www.7tool.cn:8090/webchat/?uid=10002&key=10002)
 
-测试步骤：同时点击多个链接，登陆多个账户进行相互消息测试。
+测试步骤：同时点击多个链接，登陆多个账户进行相互消息测试。**若提示“未登录”刷新界面两次即可！**
 
 ## 功能
 
